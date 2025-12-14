@@ -76,7 +76,7 @@ const Login = () => {
                     <p>New to Zap Shift? <Link 
                     state={location.state} className='text-primary font-bold' to='/register'> Register</Link> </p>
                 </form>
-                <SocialLogin></SocialLogin>
+                {/* <SocialLogin></SocialLogin> */}
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 const Button = ({
     children,
-    className = "",
+    className = "px-10 py-3 rounded-lg",
     variant = "primary",
     size = "md",
     ...props
@@ -11,17 +11,14 @@ const Button = ({
 
     // Variant styles (DaisyUI + Tailwind)
     const variants = {
-        primary: "btn btn-primary",
-        secondary: "btn btn-secondary",
-        accent: "btn btn-accent",
-        ghost: "btn btn-ghost",
-        outline: "btn btn-outline",
-        info: "btn btn-info",
-        success: "btn btn-success",
-        warning: "btn btn-warning",
-        error: "btn btn-error",
-        link: "btn btn-link",
+        primary: "text-white bg-[#1799ab] hover:bg-[#1799abe6] ",
+        secondary: "text-white bg-[#FF7D4A] hover:bg-[#E96632]",
+        accent: "text-white bg-[#00E1AA] hover:bg-[#00C08D]",
+        outline: "bg-[#ffffff80] border-2 border-[#1799ab4d] text-[#171d26] hover:bg-[#1799ab1a] ",
+        ghost: "bg-transparent hover:bg-[#F5F5F5]",
+        link: "text-[#4B8BFF] underline-offset-4 hover:underline",
     };
+      
 
     // Size styles
     const sizes = {

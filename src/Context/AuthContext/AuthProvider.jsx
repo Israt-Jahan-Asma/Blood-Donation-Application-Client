@@ -39,20 +39,20 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser)
             setLoading(false)
-            
-            return()=>{
-                unsubscribe()
-            }
         })
+        return () => {
+            unsubscribe()
+        }
     }, [])
 
     useEffect(()=>{
         if(!user) return
         axios.get(`http://localhost:3000/users/role/${user.email}`)
             .then(res => {
-                console.log(res.data.role)
+                setRole(res.data.role)
             })
     }, [user])
+    
     const authInfo = {
         user,
         setUser,

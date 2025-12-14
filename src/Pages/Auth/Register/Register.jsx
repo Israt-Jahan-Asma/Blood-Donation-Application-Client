@@ -11,14 +11,14 @@ const Register = () => {
     const { registerUser, updateUserProfile } = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
-    console.log('register', location);
+    // console.log('register', location);
     
     const handleRegistration = (data) => {
+        console.log(data.role);
         const profileImg = data.photo[0]
 
         registerUser(data.email, data.password)
             .then(result => {
-                console.log(result.user);
                 //store the img and get the photo url
                 const formData = new FormData()
                 formData.append('image', profileImg)
@@ -27,7 +27,7 @@ const Register = () => {
 
                 axios.post(imgAPIURL, formData)
                 .then(res=>{
-                    console.log('after img upload', res.data.data.url);
+                    // console.log('after img upload', res.data.data.url);
                     const userProfile = {
                         displayName: data.name,
                         photoURL: res.data.data.url
@@ -38,11 +38,11 @@ const Register = () => {
                         axios.post('http://localhost:3000/users', {
                             name: data.name,
                             email: data.email,
+                            role: data.role,
                             password: data.password,
                             photoURL: res.data.data.url
                         })
                         .then(res=>{
-                            console.log(res);
                             navigate(location.state || '/')
                             
                         }).catch(error=>{
@@ -83,6 +83,25 @@ const Register = () => {
 
                         {errors.photo?.type === 'required' && (<p className='text-red-500'> Photo is require</p>)}
 
+                        {/* role */}
+                        <label className="label">Role</label>
+                        <select
+                            {...register('role', { required: true })}
+                            className="select select-bordered"
+                            defaultValue=""
+                        >
+                            <option value="" disabled>
+                                Choose Role
+                            </option>
+                            <option value="Donor">Donor</option>
+                            <option value="Volunteer">Volunteer</option>
+                        </select>
+
+                        {errors.role && (
+                            <p className="text-red-500">Role is required</p>
+                        )}
+
+
                         {/* email  */}
                         <label className="label">Email</label>
                         <input type="email" {...register('email', { required: true })} className="input" placeholder="Email" />
@@ -105,7 +124,7 @@ const Register = () => {
                     state={location.state}
                     className='text-primary font-bold' to='/login'> Login</Link> </p>
                 </form>
-                <SocialLogin></SocialLogin>
+                {/* <SocialLogin></SocialLogin> */}
             </div>
         </div>
     );
