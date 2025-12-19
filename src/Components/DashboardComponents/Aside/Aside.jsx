@@ -62,12 +62,12 @@ export default function Aside() {
                         </NavLink>)
                     }
                     <NavLink
-                        to="/dashboard/settings"
+                        to="/dashboard/my-donation-requests"
                         className={({ isActive }) =>
                             `flex items-center gap-3 p-3 rounded-lg transition ${isActive ? "bg-primary text-white" : "hover:bg-gray-100"}`
                         }
                     >
-                        <Settings size={18} /> Settings
+                        <Settings size={18} /> My Donation Requests
                     </NavLink>
                 </nav>
 

@@ -54,8 +54,10 @@ const AuthProvider = ({ children }) => {
                 setRole(res.data.role)
                 setUserStatus(res.data.status)
                 setRoleLoading(false)
+                console.log(user);
             })
     }, [user])
+
 
 
     
