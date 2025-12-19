@@ -4,12 +4,14 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import useAxios from "../../Hooks/useAxios";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const CreateRequest = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const axiosInstance = useAxios()
+    // const axiosInstance = useAxios()
+    const axiosSecure = useAxiosSecure()
     const [upazila, setUpazila] = useState([])
     const [districts, setDistricts] = useState([])
 
@@ -53,11 +55,12 @@ const CreateRequest = () => {
 
 
         try {
-            const res = await axiosInstance.post(
+            const res = await axiosSecure.post(
               "/requests", requestData
             );
             console.log(res.data);
             toast.success("Request Created Successfully!");
+            // navigate('/dashboard/my-donation-requests');
           } catch (error) {
             console.error(error);
             toast.error("Failed to create request");

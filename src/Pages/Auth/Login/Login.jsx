@@ -14,14 +14,14 @@ const Login = () => {
     const email = watch("email")
 
     const handleLogin = (data) => {
-        console.log(data);
 
         signInUser(data.email, data.password)
         .then(result=>{
-            console.log(result.user);
+            toast.success('You have Login successfully!')
             navigate(location?.state || '/')
             
         }).catch(error=>{
+            toast.warning(error)
             console.log(error);
             
         })
@@ -47,7 +47,7 @@ const Login = () => {
         <div className='lg:w-9/12 mx-auto space-y-4' >
             
             <h2 className='text-5xl font-bold'>Welcome Back</h2>
-            <p>Login with ZapShift</p>
+            <p>Login with Blood Donation Application </p>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-xl">
                 <form className="card-body" onSubmit={handleSubmit(handleLogin)}>
                     <fieldset className="fieldset">

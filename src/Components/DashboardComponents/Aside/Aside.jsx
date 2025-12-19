@@ -2,12 +2,14 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { LayoutDashboard, Users, Calendar, Settings, LogOut, PlusCircle } from "lucide-react";
 import useAuth from "../../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 
 export default function Aside() {
-    const { user, logOut } = useAuth();
+    const { user, logOut, role } = useContext(AuthContext);
     const navigate = useNavigate();
 
-  const handleLogout = async () => {
+    const handleLogout = async () => {
         try {
             await logOut();
             toast.success('Logged out successfully')
@@ -36,24 +38,29 @@ export default function Aside() {
                         <LayoutDashboard size={18} /> Dashboard
                     </NavLink>
 
-                    <NavLink
-                        to="/dashboard/users"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 p-3 rounded-lg transition ${isActive ? "bg-primary text-white" : "hover:bg-gray-100"}`
-                        }
-                    >
-                        <Users size={18} /> Users
-                    </NavLink>
+                    {
+                        role == 'admin' && (
+                            <NavLink
+                                to="/dashboard/all-users"
+                                className={({ isActive }) =>
+                                    `flex items-center gap-3 p-3 rounded-lg transition ${isActive ? "bg-primary text-white" : "hover:bg-gray-100"}`
+                                }
+                            >
+                                <Users size={18} /> All Users
+                            </NavLink>)
+                    }
 
-                    <NavLink
-                        to="/dashboard/create-request"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 p-3 rounded-lg transition ${isActive ? "bg-primary text-white" : "hover:bg-gray-100"}`
-                        }
-                    >
-                        <PlusCircle size={18} /> Create Request
-                    </NavLink>
 
+                    {
+                        role == 'donor' && (<NavLink
+                            to="/dashboard/create-donation-request"
+                            className={({ isActive }) =>
+                                `flex items-center gap-3 p-3 rounded-lg transition ${isActive ? "bg-primary text-white" : "hover:bg-gray-100"}`
+                            }
+                        >
+                            <PlusCircle size={18} /> Create Request
+                        </NavLink>)
+                    }
                     <NavLink
                         to="/dashboard/settings"
                         className={({ isActive }) =>
@@ -65,14 +72,14 @@ export default function Aside() {
                 </nav>
 
                 <button
-                    onClick={handleLogout} 
+                    onClick={handleLogout}
                     className="mt-10 flex items-center gap-3 text-red-600 hover:bg-red-50 p-3 rounded-lg w-full"
                 >
                     <LogOut size={18} /> Logout
                 </button>
             </aside>
 
-            
+
         </div>
     );
 }
