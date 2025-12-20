@@ -40,6 +40,12 @@ const AuthProvider = ({ children }) => {
     useEffect( ()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser)
+            // If there is no user, we don't need to load roles
+            if (!currentUser) {
+                setRoleLoading(false);
+                setRole('');
+                setUserStatus('');
+            }
             setLoading(false)
         })
         return () => {
@@ -48,14 +54,19 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     useEffect(()=>{
-        if(!user) return
+        if (user && user.email) {
+            setRoleLoading(true);
         axios.get(`http://localhost:3000/users/role/${user.email}`)
             .then(res => {
                 setRole(res.data.role)
                 setUserStatus(res.data.status)
                 setRoleLoading(false)
-                console.log(user);
-            })
+                // console.log(user);
+            }).catch(err => {
+                console.error("Error fetching role:", err);
+                setRoleLoading(false);
+            });
+        }
     }, [user])
 
 

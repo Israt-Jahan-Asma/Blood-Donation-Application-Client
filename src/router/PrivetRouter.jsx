@@ -5,7 +5,7 @@ import { Navigate } from 'react-router';
 
 const PrivetRouter = ({children}) => {
     const{user, loading, roleLoading, userStatus} = useContext(AuthContext)
-if(loading || roleLoading){
+    if (loading || roleLoading){
     return <p> Loading.....</p>
 }
     if (!user || !userStatus == 'active'){

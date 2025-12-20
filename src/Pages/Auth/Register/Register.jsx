@@ -74,7 +74,7 @@ const Register = () => {
         } catch (error) {
             console.error(error);
         }
-        console.log("Form submitted data:", data); 
+        
     };
 
     return (

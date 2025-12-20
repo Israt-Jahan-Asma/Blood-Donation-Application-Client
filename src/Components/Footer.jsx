@@ -13,7 +13,7 @@ const Footer = () => {
                                 <Users className="h-5 w-5 text-primary-foreground" />
                             </div>
                             <span className="font-heading text-xl font-bold text-gradient">
-                                ClubSphere
+                                BloodLink
                             </span>
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed">
@@ -94,7 +94,7 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-                    <p>© {new Date().getFullYear()} ClubSphere. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} BloodLink. All rights reserved.</p>
                 </div>
             </div>
         </footer>

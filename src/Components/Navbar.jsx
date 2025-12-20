@@ -11,7 +11,8 @@ const Navbar = () => {
         <>
             <li><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to='/clubs'>Donation Requests</NavLink></li>
-            <li><NavLink to='/events'>Search Donors</NavLink></li>
+            <li><NavLink to='/search'>Search Donors</NavLink></li>
+            <li><NavLink to='/donate'>Donate</NavLink></li>
 
         </>
     );

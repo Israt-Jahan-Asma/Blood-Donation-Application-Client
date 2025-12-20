@@ -20,7 +20,7 @@ const AllUsers = () => {
     const handleStatusChange = (email, status )=>{
         axiosSecure.patch(`/update/user/status?email=${email}&status=${status}`)
         .then(res=>{
-            console.log(res.data);
+            // console.log(res.data);
             fetchUsers()
         })
     }

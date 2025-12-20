@@ -21,7 +21,7 @@ const Login = () => {
             navigate(location?.state || '/')
             
         }).catch(error=>{
-            toast.warning(error)
+            toast.error(error.message)
             console.log(error);
             
         })
@@ -73,7 +73,7 @@ const Login = () => {
                         {/* login button  */}
                         <button className="btn bg-primary mt-4">Login</button>
                     </fieldset>
-                    <p>New to Zap Shift? <Link 
+                    <p>New to BloodLink? <Link 
                     state={location.state} className='text-primary font-bold' to='/register'> Register</Link> </p>
                 </form>
                 {/* <SocialLogin></SocialLogin> */}
