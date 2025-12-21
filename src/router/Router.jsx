@@ -16,6 +16,7 @@ import DonationRequestsPublic from "../Pages/DonationRequestsPublic/DonationRequ
 import RequestDetails from "../Pages/RequestDetails/RequestDetails";
 import PrivetRouter from "../router/PrivetRouter";
 import Profile from "../Dashboard/Profile/Profile";
+import EditRequest from "../Dashboard/EditRequest/EditRequest";
 
 const router = createBrowserRouter([
     {
@@ -80,7 +81,11 @@ const router = createBrowserRouter([
         {
             path: 'my-donation-requests',
             Component: MyDonationRequests
-        }
+        },
+        {
+            path: '/dashboard/edit-request/:id',
+            Component: EditRequest
+        },
         ]
     }
 ]);

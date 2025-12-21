@@ -153,16 +153,11 @@ const CreateRequest = () => {
                         <label className="label">
                             <span className="label-text">Recipient District *</span>
                         </label>
-                        <select
-                            name="district"
-                            required
-                            className="select select-bordered w-full h-12"
-                        >
-                            
+                        
+                        <select name="district" required className="select select-bordered w-full h-12">
                             <option value="" disabled>Select District</option>
-
                             {districts?.map(d => (
-                                <option key={d.id} value={d.id}>
+                                <option key={d.id} value={d.name}> 
                                     {d.name}
                                 </option>
                             ))}
