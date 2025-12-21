@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router";
-import { LayoutDashboard, Users, Calendar, Settings, LogOut, PlusCircle } from "lucide-react";
+import { LayoutDashboard, Users, Calendar, Settings, LogOut, PlusCircle, UserIcon } from "lucide-react";
 import useAuth from "../../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import { useContext } from "react";
@@ -37,6 +37,15 @@ export default function Aside() {
                     >
                         <LayoutDashboard size={18} /> Dashboard
                     </NavLink>
+                    {/* profile nav*/}
+                    <NavLink
+                        to="/dashboard/profile"
+                        className={({ isActive }) =>
+                            `flex items-center gap-3 p-3 rounded-lg transition ${isActive ? "bg-[#ea0606] text-white" : "hover:bg-gray-100"}`
+                        }
+                    >
+                        <UserIcon size={18} /> Profile
+                    </NavLink>
 
                     {
                         role == 'admin' && (
@@ -49,7 +58,6 @@ export default function Aside() {
                                 <Users size={18} /> All Users
                             </NavLink>)
                     }
-
 
                     {
                         role == 'donor' && (<NavLink

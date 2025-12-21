@@ -4,6 +4,7 @@ import useAuth from '../../../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../Social Login/SocialLogin';
 import { toast } from 'react-toastify';
+import { Mail, Lock, LogIn } from 'lucide-react';
 
 const Login = () => {
 
@@ -28,55 +29,55 @@ const Login = () => {
 
     }
 
-    const handleForget = async (e) => {
-        e.preventDefault();
-        if (!email) {
-            toast.error("Please enter your email first!");
-            return;
-        }
-        try {
-            await resetPass(email);
-            toast.success("Password reset email sent! Check your inbox.");
-        } catch (error) {
-            toast.error(error.message);
-        }
-    };
+    // const handleForget = async (e) => {
+    //     e.preventDefault();
+    //     if (!email) {
+    //         toast.error("Please enter your email first!");
+    //         return;
+    //     }
+    //     try {
+    //         await resetPass(email);
+    //         toast.success("Password reset email sent! Check your inbox.");
+    //     } catch (error) {
+    //         toast.error(error.message);
+    //     }
+    // };
 
     
     return (
-        <div className='lg:w-9/12 mx-auto space-y-4' >
-            
-            <h2 className='text-5xl font-bold'>Welcome Back</h2>
-            <p>Login with Blood Donation Application </p>
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-xl">
-                <form className="card-body" onSubmit={handleSubmit(handleLogin)}>
-                    <fieldset className="fieldset">
+        <div className="section-container pt-10 pb-20">
+            <div className="max-w-md mx-auto bg-white rounded-[2rem] shadow-xl overflow-hidden border border-slate-100">
+                <div className="bg-slate-900 p-8 text-white text-center">
+                    <h2 className="text-3xl font-bold">Welcome Back</h2>
+                    <p className="text-slate-400 mt-2">Log in to your dashboard</p>
+                </div>
 
-                        {/* email */}
-                        <label className="label">Email</label>
-                        <input type="email" {...register('email', { required: true })} className="input" placeholder="Email" />
+                <form className="p-8 space-y-5" onSubmit={handleSubmit(handleLogin)}>
+                    <div className="form-control">
+                        <label className="label font-bold text-slate-700">Email Address</label>
+                        <div className="relative">
+                            <Mail className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <input type="email" {...register('email', { required: true })} className="input-field pl-10" placeholder="email@example.com" />
+                        </div>
+                    </div>
 
-                        {
-                            errors.email?.type === 'required' && <p className='text-red-500'>Email is required</p>
-                        }
-                        {/* password  */}
-                        <label className="label">Password</label>
-                        <input type="password" {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
-                        {
-                            errors.password?.type === 'minLength' && <p className='text-red-500'>Password must be 6 character</p>
-                        }
+                    <div className="form-control">
+                        <label className="label font-bold text-slate-700">Password</label>
+                        <div className="relative">
+                            <Lock className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <input type="password" {...register('password', { required: true })} className="input-field pl-10" placeholder="••••••••" />
+                        </div>
+                        {/* <div className="text-right mt-2">
+                            <button onClick={handleForget} className="text-sm text-slate-500 hover:text-[#ea0606]">Forgot password?</button>
+                        </div> */}
+                    </div>
 
-                        {/* forgetPass  */}
+                    <button className="btn-primary w-full py-4 text-lg">Login</button>
 
-                        <div><button onClick={handleForget} className="link link-hover">Forgot password?</button></div>
-
-                        {/* login button  */}
-                        <button className="btn bg-primary mt-4">Login</button>
-                    </fieldset>
-                    <p>New to BloodLink? <Link 
-                    state={location.state} className='text-primary font-bold' to='/register'> Register</Link> </p>
+                    <p className="text-center text-slate-600">
+                        New to BloodLink? <Link state={location.state} className='text-[#ea0606] font-bold' to='/register'> Register</Link>
+                    </p>
                 </form>
-                {/* <SocialLogin></SocialLogin> */}
             </div>
         </div>
     );

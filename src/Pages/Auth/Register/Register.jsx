@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
 import axios from "axios";
+import { Droplets, MapPin, User, Mail, Lock, Image as ImageIcon } from "lucide-react";
 
 const Register = () => {
     const {
@@ -78,114 +79,102 @@ const Register = () => {
     };
 
     return (
-        <div className="lg:w-9/12 mx-auto">
-            <h2 className="text-4xl font-bold mb-2">Create an Account</h2>
-           
+        <div className="section-container pt-10 pb-20">
+            <div className="max-w-2xl mx-auto bg-white rounded-[2rem] shadow-xl overflow-hidden border border-slate-100">
+                {/* Header */}
+                <div className="bg-[#ea0606] p-8 text-white text-center">
+                    <h2 className="text-3xl font-bold">Join the Mission</h2>
+                    <p className="text-red-100 mt-2">Create an account to start saving lives</p>
+                </div>
 
-            <div className="card bg-base-100 max-w-md shadow-xl">
-                <form onSubmit={handleSubmit(handleRegistration)} className="card-body space-y-3">
-
-                    {/* Name */}
-                    <input
-                        className="input input-bordered"
-                        placeholder="Full Name"
-                        {...register("name", { required: true })}
-                    />
-                    {errors.name && <p className="text-red-500">Name is required</p>}
+                <form onSubmit={handleSubmit(handleRegistration)} className="p-8 grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {/* Full Name */}
+                    <div className="form-control">
+                        <label className="label font-bold text-slate-700">Full Name</label>
+                        <div className="relative">
+                            <User className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <input className="input-field pl-10" placeholder="John Doe" {...register("name", { required: true })} />
+                        </div>
+                    </div>
 
                     {/* Email */}
-                    <input
-                        type="email"
-                        className="input input-bordered"
-                        placeholder="Email"
-                        {...register("email", { required: true })}
-                    />
-                    {errors.email && <p className="text-red-500">Email is required</p>}
+                    <div className="form-control">
+                        <label className="label font-bold text-slate-700">Email Address</label>
+                        <div className="relative">
+                            <Mail className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <input type="email" className="input-field pl-10" placeholder="email@example.com" {...register("email", { required: true })} />
+                        </div>
+                    </div>
 
                     {/* Avatar */}
-                    <input
-                        type="file"
-                        className="file-input file-input-bordered"
-                        {...register("avatar", { required: true })}
-                    />
-                    {errors.avatar && <p className="text-red-500">Avatar is required</p>}
+                    <div className="form-control md:col-span-2">
+                        <label className="label font-bold text-slate-700">Profile Picture</label>
+                        <div className="relative">
+                            <ImageIcon className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <input type="file" className="file-input w-full border border-slate-200 rounded-xl pl-10 focus:outline-none focus:border-[#ea0606]" {...register("avatar", { required: true })} />
+                        </div>
+                    </div>
 
                     {/* Blood Group */}
-                    <select
-                        className="select select-bordered"
-                        {...register("bloodGroup", { required: true })}
-                        defaultValue=""
-                    >
-                        <option disabled value="">Select Blood Group</option>
-                        {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map(bg => (
-                            <option key={bg}>{bg}</option>
-                        ))}
-                    </select>
-                    {errors.bloodGroup && <p className="text-red-500">Blood group required</p>}
+                    <div className="form-control">
+                        <label className="label font-bold text-slate-700">Blood Group</label>
+                        <div className="relative">
+                            <Droplets className="absolute left-3 top-3 text-[#ea0606]" size={18} />
+                            <select className="input-field pl-10" {...register("bloodGroup", { required: true })} defaultValue="">
+                                <option disabled value="">Select Group</option>
+                                {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map(bg => <option key={bg}>{bg}</option>)}
+                            </select>
+                        </div>
+                    </div>
 
-                    <select
-                        className="select select-bordered"
-                        {...register("district", { required: true })}
-                        defaultValue=""
-                    >
-                        <option value="" disabled>Select District</option>
-
-                        {districts?.map(d => (
-                            <option key={d.id} value={d.id}>
-                                {d.name}
-                            </option>
-                        ))}
-                    </select>
-
-
+                    {/* District */}
+                    <div className="form-control">
+                        <label className="label font-bold text-slate-700">District</label>
+                        <div className="relative">
+                            <MapPin className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <select className="input-field pl-10" {...register("district", { required: true })} defaultValue="">
+                                <option value="" disabled>Select District</option>
+                                {districts?.map(d => <option key={d.id} value={d.name}>{d.name}</option>)}
+                            </select>
+                        </div>
+                    </div>
 
                     {/* Upazila */}
-                    <select
-                        className="select select-bordered"
-                        {...register("upazila", { required: true })}
-                        defaultValue=""
-                    >
-                        <option value="" disabled>Select Upazila</option>
-                        {upazila.map(u => (
-                            <option key={u.id} value={u.name}>{u.name}</option>
-                        ))}
-                    </select>
-
+                    <div className="form-control">
+                        <label className="label font-bold text-slate-700">Upazila</label>
+                        <div className="relative">
+                            <MapPin className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <select className="input-field pl-10" {...register("upazila", { required: true })} defaultValue="">
+                                <option value="" disabled>Select Upazila</option>
+                                {upazila.map(u => <option key={u.id} value={u.name}>{u.name}</option>)}
+                            </select>
+                        </div>
+                    </div>
 
                     {/* Password */}
-                    <input
-                        type="password"
-                        className="input input-bordered"
-                        placeholder="Password"
-                        {...register("password", {
-                            required: true,
-                            minLength: 6,
-                            pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/,
-                        })}
-                    />
-                    
+                    <div className="form-control">
+                        <label className="label font-bold text-slate-700">Password</label>
+                        <div className="relative">
+                            <Lock className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <input type="password" placeholder="••••••••" className="input-field pl-10" {...register("password", { required: true, minLength: 6 })} />
+                        </div>
+                    </div>
 
                     {/* Confirm Password */}
-                    <input
-                        type="password"
-                        className="input input-bordered"
-                        placeholder="Confirm Password"
-                        {...register("confirmPassword", {
-                            validate: value => value === password || "Passwords do not match",
-                        })}
-                    />
-                    {errors.confirmPassword && (
-                        <p className="text-red-500">{errors.confirmPassword.message}</p>
-                    )}
+                    <div className="form-control md:col-span-2">
+                        <label className="label font-bold text-slate-700">Confirm Password</label>
+                        <div className="relative">
+                            <Lock className="absolute left-3 top-3 text-slate-400" size={18} />
+                            <input type="password" placeholder="••••••••" className="input-field pl-10" {...register("confirmPassword", { validate: v => v === password || "Match failed" })} />
+                        </div>
+                    </div>
 
-                    <button className="btn btn-primary mt-4">Register</button>
-
-                    <p className="text-sm">
-                        Already have an account?{" "}
-                        <Link to="/login" className="text-primary font-semibold">
-                            Login
-                        </Link>
-                    </p>
+                    <div className="md:col-span-2 mt-4">
+                        <button className="btn-primary w-full py-4 text-lg">Register Now</button>
+                        <p className="text-center mt-6 text-slate-600">
+                            Already have an account? <Link to="/login" className="text-[#ea0606] font-bold">Login here</Link>
+                        </p>
+                    </div>
                 </form>
             </div>
         </div>

@@ -15,6 +15,7 @@ import SearchDonor from "../Pages/SearchDonor/SearchDonor";
 import DonationRequestsPublic from "../Pages/DonationRequestsPublic/DonationRequestsPublic";
 import RequestDetails from "../Pages/RequestDetails/RequestDetails";
 import PrivetRouter from "../router/PrivetRouter";
+import Profile from "../Dashboard/Profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             index: true,
             Component: MainDashboard
 
+        },
+        {
+            path:'profile',
+            Component: Profile
         },
         {
             path: 'create-donation-request',
