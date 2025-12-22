@@ -14,7 +14,7 @@ const PaymentSuccess = () => {
 
     useEffect(() => {
         if (sessionId) {
-            axiosInstance.post(`/success-payment?session_id=${sessionId}`)
+            axiosInstance.post(`success-payment?session_id=${sessionId}`)
                 .then(res => {
                     setIsProcessing(false); // Only allow moving back NOW
                 });
