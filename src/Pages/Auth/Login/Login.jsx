@@ -29,19 +29,19 @@ const Login = () => {
 
     }
 
-    // const handleForget = async (e) => {
-    //     e.preventDefault();
-    //     if (!email) {
-    //         toast.error("Please enter your email first!");
-    //         return;
-    //     }
-    //     try {
-    //         await resetPass(email);
-    //         toast.success("Password reset email sent! Check your inbox.");
-    //     } catch (error) {
-    //         toast.error(error.message);
-    //     }
-    // };
+    const handleForget = async (e) => {
+        e.preventDefault();
+        if (!email) {
+            toast.error("Please enter your email first!");
+            return;
+        }
+        try {
+            await resetPass(email);
+            toast.success("Password reset email sent! Check your inbox.");
+        } catch (error) {
+            toast.error(error.message);
+        }
+    };
 
     
     return (
@@ -67,9 +67,9 @@ const Login = () => {
                             <Lock className="absolute left-3 top-3 text-slate-400" size={18} />
                             <input type="password" {...register('password', { required: true })} className="input-field pl-10" placeholder="••••••••" />
                         </div>
-                        {/* <div className="text-right mt-2">
+                        <div className="text-right mt-2">
                             <button onClick={handleForget} className="text-sm text-slate-500 hover:text-[#ea0606]">Forgot password?</button>
-                        </div> */}
+                        </div>
                     </div>
 
                     <button className="btn-primary w-full py-4 text-lg">Login</button>
