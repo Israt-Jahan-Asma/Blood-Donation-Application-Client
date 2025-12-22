@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
     useEffect(()=>{
         if (user && user.email) {
             setRoleLoading(true);
-        axios.get(`http://localhost:3000/users/role/${user.email}`)
+            axios.get(`https://blood-donation-application-server-sigma.vercel.app/users/role/${user.email}`)
             .then(res => {
                 setRole(res.data.role)
                 setUserStatus(res.data.status)

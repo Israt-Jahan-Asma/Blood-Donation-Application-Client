@@ -60,7 +60,7 @@ const Register = () => {
             });
 
             // 4. Save user to database
-            await axios.post("http://localhost:3000/users", {
+            await axios.post("https://blood-donation-application-server-sigma.vercel.app/users", {
                 name: data.name,
                 email: data.email,
                 photoURL,
