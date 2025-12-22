@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../Context/AuthContext/AuthContext";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000/'
+    baseURL: 'https://blood-donation-application-beryl.vercel.app/'
 })
 
 const useAxiosSecure = ()=>{
@@ -16,7 +16,7 @@ const useAxiosSecure = ()=>{
         })
 
         const resInterceptor = axiosSecure.interceptors.response.use((response)=> {return response}, (error)=>{
-            console.log(error);
+            // console.log(error);
             return Promise.reject(error)
             
         } )

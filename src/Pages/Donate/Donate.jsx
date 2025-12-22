@@ -21,7 +21,7 @@ const Donate = () => {
         axiosInstance.post('/create-payment-checkout', formData)
 
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 window.location.href = res.data.url
             })
         }
